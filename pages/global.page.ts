@@ -1,0 +1,1 @@
+export const homePage:string = "https://hipoteka.pekao.com.pl/kalkulator-zdolnosci/"
