@@ -37,5 +37,6 @@ test('Sign in to exoffice', async ({ page }) => {
   await page.locator('//*/input[@class="ff-input-suffix-workaround ng-untouched ng-pristine ng-valid ng-star-inserted"]').fill("12000");
   await page.locator('//button[text() = "PRZEPISZ"]').nth(0).click();
   await page.locator('//*/pekao-button/button[text() = "ZAPISZ"]').nth(0).click();
-  await page.pause()
+  await console.log("Finito")
+  // await page.pause()
 });
