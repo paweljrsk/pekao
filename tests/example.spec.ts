@@ -2,10 +2,6 @@ import { test, expect } from '@playwright/test';
 import { homePage } from '../pages/global.page';
 
 test('Sign in to exoffice', async ({ page }) => {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const code = urlParams.get('incomes')
-
   await page.goto(homePage);
   // const login = page.locator('#creditAmount');
   await page.locator('#pdpPekaoAutocompleteField').first().click()
@@ -32,7 +28,7 @@ test('Sign in to exoffice', async ({ page }) => {
   await page.locator('//button[text() = "DODAJ DOCHÓD "]').nth(0).click();
   await page.locator('#incomeSource').nth(0).click();
   await page.locator('pekao-option[role="option"]:has-text("umowa o pracę w kraju")').nth(0).click();
-  await page.locator('#netMonthlyIncome').nth(0).fill("12000");
+  await page.locator('#netMonthlyIncome').nth(0).fill("10000");
   await page.locator('#incomeCurrencyCode').nth(0).click();
   await page.locator('pekao-option[role="option"]:has-text("PLN")').click();
   await page.locator('#employmentType').nth(0).click();
@@ -41,6 +37,8 @@ test('Sign in to exoffice', async ({ page }) => {
   await page.locator('//*/input[@class="ff-input-suffix-workaround ng-untouched ng-pristine ng-valid ng-star-inserted"]').fill("12000");
   await page.locator('//button[text() = "PRZEPISZ"]').nth(0).click();
   await page.locator('//*/pekao-button/button[text() = "ZAPISZ"]').nth(0).click();
-  await console.log(code)
+  await page.locator('//button[text() = " Sprawdź zdolność "]').nth(0).click();
+  const maxloan = await page.locator('//div/div[@class="col-sm-4"]').nth(1).textContent()
+  await console.log(maxloan)
   // await page.pause()
 });
